@@ -21,6 +21,12 @@ repositories {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+    // AWS SDK v2 — BOM으로 버전 통일 관리
+    implementation platform('software.amazon.awssdk:bom:2.26.0')
+    implementation 'software.amazon.awssdk:bedrockagentruntime'  // Knowledge Base Retrieve API
+    implementation 'software.amazon.awssdk:sts'                   // DefaultCredentialsProvider 지원
+
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }

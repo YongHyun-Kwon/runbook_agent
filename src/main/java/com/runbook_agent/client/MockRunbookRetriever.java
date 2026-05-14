@@ -2,13 +2,15 @@ package com.runbook_agent.client;
 
 import com.runbook_agent.domain.SourceDocument;
 import com.runbook_agent.domain.SymptomType;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Map;
 
-// Phase 5에서 BedrockKnowledgeBaseRetriever로 교체 예정
+// bedrock 프로파일이 아닐 때 기본으로 사용 (Phase 1~4 테스트 보호)
 @Component
+@Profile("!bedrock")
 public class MockRunbookRetriever implements RunbookRetriever {
 
     private static final Map<SymptomType, List<SourceDocument>> RUNBOOK_MAP = Map.of(
