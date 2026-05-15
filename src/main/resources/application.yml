@@ -1,6 +1,12 @@
 spring:
   application:
     name: runbook_agent
+  ai:
+    anthropic:
+      # springai 프로파일이 아닐 때는 API 호출 자체가 없으므로 placeholder 사용
+      api-key: ${ANTHROPIC_API_KEY:not-configured}
 
-# AWS Bedrock 연결: --spring.profiles.active=bedrock 로 실행
-# 예) BEDROCK_KB_ID=XXXX ./gradlew bootRun --args='--spring.profiles.active=bedrock'
+# 실행 방법:
+# - 기본 (Rule-based): ./gradlew bootRun
+# - Spring AI RAG + Claude: ANTHROPIC_API_KEY=sk-ant-xxx ./gradlew bootRun --args='--spring.profiles.active=springai'
+# - AWS Bedrock:  BEDROCK_KB_ID=xxx ./gradlew bootRun --args='--spring.profiles.active=bedrock'

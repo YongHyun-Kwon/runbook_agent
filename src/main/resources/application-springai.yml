@@ -1,0 +1,14 @@
+# springai 프로파일 활성화 시:
+# - DocumentRunbookRetriever 활성화 (실제 Runbook 문서 기반 검색)
+# - ClaudeAnalysisEngine 활성화 (Claude API로 원인 분석 생성)
+# - MockRunbookRetriever, RuleBasedAnalysisEngine 비활성화
+# 실행 방법: ANTHROPIC_API_KEY=sk-ant-xxx ./gradlew bootRun --args='--spring.profiles.active=springai'
+
+spring:
+  ai:
+    anthropic:
+      api-key: ${ANTHROPIC_API_KEY}
+      chat:
+        options:
+          model: claude-3-5-sonnet-20241022
+          max-tokens: 2048

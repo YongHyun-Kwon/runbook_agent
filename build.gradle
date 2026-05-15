@@ -16,16 +16,26 @@ java {
 
 repositories {
     mavenCentral()
+    maven { url 'https://repo.spring.io/milestone' }
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.ai:spring-ai-bom:1.0.0"
+    }
 }
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
 
-    // AWS SDK v2 — BOM으로 버전 통일 관리
+    // Spring AI — Claude API 연동 (Phase 6), 버전은 spring-ai-bom이 관리
+    implementation 'org.springframework.ai:spring-ai-starter-model-anthropic'
+
+    // AWS SDK v2 — Bedrock 전환 또는 Phase 7+ Lambda 연동 시 사용
     implementation platform('software.amazon.awssdk:bom:2.26.0')
-    implementation 'software.amazon.awssdk:bedrockagentruntime'  // Knowledge Base Retrieve API
-    implementation 'software.amazon.awssdk:sts'                   // DefaultCredentialsProvider 지원
+    implementation 'software.amazon.awssdk:bedrockagentruntime'
+    implementation 'software.amazon.awssdk:sts'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
