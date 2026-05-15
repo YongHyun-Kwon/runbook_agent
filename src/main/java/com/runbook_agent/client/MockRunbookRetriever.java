@@ -8,9 +8,9 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.Map;
 
-// bedrock 프로파일이 아닐 때 기본으로 사용 (Phase 1~4 테스트 보호)
+// bedrock, springai 프로파일이 아닐 때 기본으로 사용 (Phase 1~4 테스트 보호)
 @Component
-@Profile("!bedrock")
+@Profile("!bedrock & !springai")
 public class MockRunbookRetriever implements RunbookRetriever {
 
     private static final Map<SymptomType, List<SourceDocument>> RUNBOOK_MAP = Map.of(
